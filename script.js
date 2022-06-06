@@ -7,8 +7,7 @@ function Book (title, author, pages){
     this.read = 'not read yet'
     this.info = function(){
         return(`${this.title} by ${this.author} has ${this.pages} pages, ${this.read}`)
-    }
-    
+    }   
 }
 
 let myLibrary = []
@@ -22,14 +21,28 @@ function addBooktoLibrary(title, author, pages){
     myLibrary.push(book)
 }
 
+function displaybook(){
+    for (const books of myLibrary){
+        const library = document.querySelector(".library")
+       const book = document.createElement("div")
+       book.setAttribute("id", `${books.title} Book`)
+       book.style.backgroundColor = "black"
+       book.style.width= "50px"
+        book.innerHTML = books.title
+        library.appendChild(book)
+       
+    }
+    
+}
+
 //const firstbook = new Book("Harry Potter", "JK Rowling", 300);
 //firstbook.addBooktoLibrary()
 //console.log(myLibrary)
 
-const book1 = new Book("Harry Potter", "JK Rowling", 300);
-const book2 = new Book("The Lightning", "Lorem Ipsum", 100);
 
-addBooktoLibrary(book1, book2)
-addBooktoLibrary(book2)
 
-console.log(myLibrary)
+addBooktoLibrary("Harry Potter", "JK Rowling", 300)
+addBooktoLibrary("The Lightning", "Lorem Ipsum", 100)
+displaybook();
+
+console.table(myLibrary)
