@@ -13,7 +13,27 @@
 </head>
 <body>
     <h1>Books Library</h1>
-    <div class="form"></div>
+    <div class="form">
+        <ul>
+            <li>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </li>
+            <li>
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+            </li>
+            <li>
+                <label for="pages">Pages</label>
+                <input type="number" id="pages" name="pages" max="1000" required>
+            </li>
+            <li>
+                <button onclick="addBooktoLibrary(document.getElementById('title').value, document.getElementById('author').value, document.getElementById('pages').value)">Submit</button>
+            </li>
+        </ul>
+        
+
+    </div>
     <div class="library"> 
         <div id="addbook">
             <svg style="width:24px;height:24px" viewBox="0 0 24 24">

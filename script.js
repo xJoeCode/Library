@@ -19,13 +19,21 @@ function addBooktoLibrary2(e) {
 function addBooktoLibrary(title, author, pages){
     const book = new Book(title, author, pages)
     myLibrary.push(book)
+    console.table(myLibrary)
+    displaybook()
 }
 
 function displaybook(){
+    const resetlibrary = document.getElementsByClassName("book")
+    console.log(typeof resetlibrary)
+    if(resetlibrary == Object){
+        resetlibrary.remove()
+    } else
+    
     for (const books of myLibrary){
         const library = document.querySelector(".library")
         const book = document.createElement("div")
-        book.setAttribute("id", `${books.title} Book`)
+        book.setAttribute("class", "book")
         library.appendChild(book)
         const title = document.createElement("p")
         title.innerHTML = books.title
@@ -43,6 +51,5 @@ function displaybook(){
 
 addBooktoLibrary("Harry Potter", "JK Rowling", 300)
 addBooktoLibrary("The Lightning", "Lorem Ipsum", 100)
-displaybook();
 
-console.table(myLibrary)
+

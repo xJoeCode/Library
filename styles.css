@@ -21,6 +21,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content:  center;
+    align-content: center;
 }
 
 .library div {
@@ -36,9 +37,9 @@ body{
 }
 
 p {
-    position: absolute;
-    right: 25%;
-    bottom: -20%;
+    position: relative;
+    right: -10%;
+    top: 102%;
     font-family: 'Sen', sans-serif;
 }
 
@@ -52,4 +53,15 @@ p {
 
 #addbook svg{
     size: 50%;
+}
+
+.form {
+    background-color: whitesmoke;
+    width: 40%;
+    height: 40%;
+    position: absolute;
+    left: 30%;
+    border: 10px solid #242424;
+    border-radius: 50px;
+    z-index: 9;
 }
