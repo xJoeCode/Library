@@ -12,24 +12,23 @@ function Book (title, author, pages){
 
 let myLibrary = []
 
-function addBooktoLibrary2(e) {
-    myLibrary.push(e)   
-}
 
 function addBooktoLibrary(title, author, pages){
+
     const book = new Book(title, author, pages)
     myLibrary.push(book)
     console.table(myLibrary)
-    displaybook()
+    const library = document.querySelector(".library")
+    const bookdiv = document.createElement("div")
+    bookdiv.setAttribute("id", `${book.title} book`)
+    library.appendChild(bookdiv)
+    const titlediv = document.createElement("p")
+    titlediv.innerHTML = book.title
+    bookdiv.appendChild(titlediv)
+    
 }
 
 function displaybook(){
-    const resetlibrary = document.getElementsByClassName("book")
-    console.log(typeof resetlibrary)
-    if(resetlibrary == Object){
-        resetlibrary.remove()
-    } else
-    
     for (const books of myLibrary){
         const library = document.querySelector(".library")
         const book = document.createElement("div")
@@ -38,9 +37,24 @@ function displaybook(){
         const title = document.createElement("p")
         title.innerHTML = books.title
         book.appendChild(title)
-       
-    }
-    
+    } 
+}
+
+function addBook(){
+    const book = new Book(title, author, pages)
+    myLibrary.push(book)
+    allbooks = document.getElementsByClassName("book")
+    console.log(allbooks)
+    allbooks.remove()
+    for (const books of myLibrary){
+        const library = document.querySelector(".library")
+        const book = document.createElement("div")
+        book.setAttribute("class", "book")
+        library.appendChild(book)
+        const title = document.createElement("p")
+        title.innerHTML = books.title
+        book.appendChild(title)
+    } 
 }
 
 //const firstbook = new Book("Harry Potter", "JK Rowling", 300);
@@ -51,5 +65,6 @@ function displaybook(){
 
 addBooktoLibrary("Harry Potter", "JK Rowling", 300)
 addBooktoLibrary("The Lightning", "Lorem Ipsum", 100)
+
 
 
