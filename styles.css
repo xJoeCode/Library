@@ -1,8 +1,12 @@
+:root{
+    --main-font-family: font-family: 'Sen', sans-serif;
+}
+
 h1{
     text-align: center;
     font-size: 3rem;
     font-weight: 100;
-    font-family: 'Sen', sans-serif;
+    font-family: var(--main-font-family);
 }
 
 
@@ -40,7 +44,7 @@ p {
     position: relative;
     right: -10%;
     top: 102%;
-    font-family: 'Sen', sans-serif;
+    font-family: var(--main-font-family);
 }
 
 #addbook{
@@ -63,5 +67,29 @@ p {
     left: 30%;
     border: 10px solid #242424;
     border-radius: 50px;
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+    font-family:var(--main-font-family) ;
     z-index: 9;
+}
+
+input {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid black;
+    height: 20px;
+    
+}
+
+label {
+    font-family:var(--main-font-family);
+    font-size: 1.5rem;
+    display: inline-block;
+    width: 80px;
+}
+
+li{
+    list-style: none;
+    margin: 10px;
 }
