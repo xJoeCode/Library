@@ -1,3 +1,55 @@
+h1{
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 100;
+    font-family: 'Sen', sans-serif;
+}
+
+
 .library {
     display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+body{
+    background-color: lightgray;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+}
+
+.library div {
+    width: 10rem;
+    height: auto;
+    aspect-ratio: 2/3;
+    margin:  5px;
+    background-image:url(./Assets/bg1.jpg);
+    background-size: cover;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+}
+
+p {
+    position: absolute;
+    right: 25%;
+    bottom: -20%;
+    font-family: 'Sen', sans-serif;
+}
+
+#addbook{
+    background-image: none;
+    display: grid;
+    place-content: center center;
+    background-color: #242424;
+    order: 1;
+}
+
+#addbook svg{
+    size: 50%;
 }

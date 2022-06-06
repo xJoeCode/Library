@@ -24,12 +24,12 @@ function addBooktoLibrary(title, author, pages){
 function displaybook(){
     for (const books of myLibrary){
         const library = document.querySelector(".library")
-       const book = document.createElement("div")
-       book.setAttribute("id", `${books.title} Book`)
-       book.style.backgroundColor = "black"
-       book.style.width= "50px"
-        book.innerHTML = books.title
+        const book = document.createElement("div")
+        book.setAttribute("id", `${books.title} Book`)
         library.appendChild(book)
+        const title = document.createElement("p")
+        title.innerHTML = books.title
+        book.appendChild(title)
        
     }
     
