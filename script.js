@@ -40,6 +40,14 @@ function displaybook(){
     } 
 }
 
+function closeForm(){
+    document.getElementsByClassName("form")[0].style.display = "none"
+}
+
+function openForm(){
+    document.getElementsByClassName("form")[0].style.display = "flex"
+}
+
 function addBook(){
     const book = new Book(title, author, pages)
     myLibrary.push(book)

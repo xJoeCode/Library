@@ -60,18 +60,27 @@ p {
 }
 
 .form {
+    display: none;
     background-color: whitesmoke;
     width: 40%;
     height: 40%;
-    position: absolute;
+    position: fixed;
     left: 30%;
     border: 10px solid #242424;
     border-radius: 50px;
-    display:  flex;
     justify-content: center;
     align-items: center;
     font-family:var(--main-font-family) ;
     z-index: 9;
+}
+
+.form #closeButton{
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    width: 40px;
+    top: -8%;
+    right: -8%;
 }
 
 input {
