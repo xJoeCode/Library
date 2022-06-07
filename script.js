@@ -3,8 +3,8 @@ function Book (title, author, pages, favorite){
     this.author = author
     this.pages = pages
     this.favorite = favorite
-    this.reading = this.readed +1
     this.read = 'not read yet'
+    this.id = 1
     this.info = function(){
         return(`${this.title} by ${this.author} has ${this.pages} pages, ${this.read}`)
     }   
@@ -19,19 +19,51 @@ function addBooktoLibrary(title, author, pages){
         alert("Please check form inputs and try again")
         
     } else {
+
     closeForm()
     const book = new Book(title, author, pages)
     myLibrary.push(book)
+    book.id = myLibrary.length
     console.table(myLibrary)
     const library = document.querySelector(".library")
     const bookdiv = document.createElement("div")
     bookdiv.setAttribute("id", `${book.title} book`)
+    bookdiv.setAttribute("data-id", `${book.id}`)
     library.appendChild(bookdiv)
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
     bookdiv.appendChild(titlediv)
+    const deleteButton = document.createElement("img")
+    deleteButton.setAttribute("src", "./Assets/delete.svg")
+    deleteButton.setAttribute("id", "removeBook")
+    deleteButton.setAttribute("onClick", `removeBook(${book.id})`)
+    bookdiv.appendChild(deleteButton)
+
+    
+    
     }
 }
+
+function removeBook(id){
+    const bookForRemoval = document.querySelector(`[data-id="${id}"]`)
+    console.log(bookForRemoval)
+    bookForRemoval.remove()
+
+}
+
+
+
+function closeForm(){
+    document.getElementsByClassName("form")[0].style.display = "none"
+    document.getElementsByClassName("form")[0].reset()
+}
+
+function openForm(){
+    document.getElementsByClassName("form")[0].style.display = "flex"
+
+}
+
+
 
 function displaybook(){
     for (const books of myLibrary){
@@ -45,32 +77,6 @@ function displaybook(){
     } 
 }
 
-function closeForm(){
-    document.getElementsByClassName("form")[0].style.display = "none"
-    document.getElementsByClassName("form")[0].reset()
-}
-
-function openForm(){
-    document.getElementsByClassName("form")[0].style.display = "flex"
-
-}
-
-function addBook(){
-    const book = new Book(title, author, pages)
-    myLibrary.push(book)
-    allbooks = document.getElementsByClassName("book")
-    console.log(allbooks)
-    allbooks.remove()
-    for (const books of myLibrary){
-        const library = document.querySelector(".library")
-        const book = document.createElement("div")
-        book.setAttribute("class", "book")
-        library.appendChild(book)
-        const title = document.createElement("p")
-        title.innerHTML = books.title
-        book.appendChild(title)
-    } 
-}
 
 //const firstbook = new Book("Harry Potter", "JK Rowling", 300);
 //firstbook.addBooktoLibrary()
