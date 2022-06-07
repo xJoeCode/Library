@@ -26,21 +26,21 @@ function addBooktoLibrary(title, author, pages){
     book.id = myLibrary.length
     console.table(myLibrary)
     const library = document.querySelector(".library")
+    //creates main book element
     const bookdiv = document.createElement("div")
     bookdiv.setAttribute("id", `${book.title} book`)
     bookdiv.setAttribute("data-id", `${book.id}`)
     library.appendChild(bookdiv)
+    //creates title 
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
     bookdiv.appendChild(titlediv)
+    //creates delete button
     const deleteButton = document.createElement("img")
     deleteButton.setAttribute("src", "./Assets/delete.svg")
     deleteButton.setAttribute("id", "removeBook")
     deleteButton.setAttribute("onClick", `removeBook(${book.id})`)
-    bookdiv.appendChild(deleteButton)
-
-    
-    
+    bookdiv.appendChild(deleteButton) 
     }
 }
 
@@ -48,10 +48,7 @@ function removeBook(id){
     const bookForRemoval = document.querySelector(`[data-id="${id}"]`)
     console.log(bookForRemoval)
     bookForRemoval.remove()
-
 }
-
-
 
 function closeForm(){
     document.getElementsByClassName("form")[0].style.display = "none"

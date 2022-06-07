@@ -70,16 +70,15 @@ p {
 }
 
 .form {
-    display: none;
+    align-self: center;
+    place-items: center;
+    display: hidden;
     background-color: rgb(255, 255, 255);
-    width: 30%;
-    height: 30%;
+    width: 400px;
+    height: 250px;
     position: fixed;
-    left: 30%;
     border: 5px solid #242424;
-    border-radius: 50px;
-    justify-content: center;
-    align-items: center;
+    overflow:hidden;
     font-family:var(--main-font-family) ;
     z-index: 9;
 }
@@ -89,8 +88,8 @@ p {
     cursor: pointer;
     position: absolute;
     width: 40px;
-    top: -8%;
-    right: -8%;
+    top: 0%;
+    right: 0%;
 }
 
 input[type="text"], input[type="number"] {
@@ -99,7 +98,34 @@ input[type="text"], input[type="number"] {
     border: 1px solid black;
     height: 20px;
     width: auto;
-    
+}
+
+input[type="checkbox"]{
+    appearance: none;
+    -webkit-appearance: none;
+    content: "✔";
+    width: 1.3em;
+    height: 1.3em;
+    border: 1px solid gray;
+    position: absolute;
+    bottom: 30%;
+}
+input[type="checkbox"]:checked{
+    background: #303030;
+}
+
+
+.form button{
+    appearance: none;
+    -webkit-appearance: none; 
+    border: none;
+    font-family: var(--main-font-family);
+    font-size: 1rem;
+    background-color: #bebebe;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+
 }
 
 label {
