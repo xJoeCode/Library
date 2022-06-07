@@ -13,30 +13,30 @@
 </head>
 <body>
     <h1>Books Library</h1>
-    <div class="form">
+    <form class="form">
         <svg style="width:40px;height:40px" viewBox="0 0 24 24" id="closeButton" onclick="closeForm()">
             <path fill="currentColor" d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z" />
         </svg>
         <ul>
             <li>
-                <label for="title">Title:</label>
+                <label for="title">Title</label>
                 <input type="text" id="title" name="title" required>
             </li>
             <li>
-                <label for="author">Author:</label>
+                <label for="author">Author</label>
                 <input type="text" id="author" name="author" required>
             </li>
             <li>
                 <label for="pages">Pages</label>
                 <input type="number" id="pages" name="pages" min="0" max="1000" required>
             </li>
+            <label for="favorite">Favorite</label>
+            <input type="checkbox" id="favorite" name="favorite" value = "favorite"> 
             <li>
-                <button onclick="addBooktoLibrary(document.getElementById('title').value, document.getElementById('author').value, document.getElementById('pages').value)">Submit</button>
+                <button type="button" onclick="addBooktoLibrary(document.getElementById('title').value, document.getElementById('author').value, document.getElementById('pages').value)" >Submit</button>
             </li>
         </ul>
-        
-
-    </div>
+    </form>
     <div class="library"> 
         <div id="addbook" onclick="openForm()">
             <svg style="width:40px;height:40px" viewBox="0 0 24 24">

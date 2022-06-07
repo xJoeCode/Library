@@ -1,8 +1,8 @@
-function Book (title, author, pages){
+function Book (title, author, pages, favorite){
     this.title = title
     this.author = author
     this.pages = pages
-    this.readed = 0
+    this.favorite = favorite
     this.reading = this.readed +1
     this.read = 'not read yet'
     this.info = function(){
@@ -14,7 +14,12 @@ let myLibrary = []
 
 
 function addBooktoLibrary(title, author, pages){
-
+    if (title == "" || author == "" || pages < 0 || pages == ""){
+        console.log("false" + author + title + pages)
+        alert("Please check form inputs and try again")
+        
+    } else {
+    closeForm()
     const book = new Book(title, author, pages)
     myLibrary.push(book)
     console.table(myLibrary)
@@ -25,7 +30,7 @@ function addBooktoLibrary(title, author, pages){
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
     bookdiv.appendChild(titlediv)
-    
+    }
 }
 
 function displaybook(){
@@ -42,10 +47,12 @@ function displaybook(){
 
 function closeForm(){
     document.getElementsByClassName("form")[0].style.display = "none"
+    document.getElementsByClassName("form")[0].reset()
 }
 
 function openForm(){
     document.getElementsByClassName("form")[0].style.display = "flex"
+
 }
 
 function addBook(){

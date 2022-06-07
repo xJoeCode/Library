@@ -61,12 +61,12 @@ p {
 
 .form {
     display: none;
-    background-color: whitesmoke;
-    width: 40%;
-    height: 40%;
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    height: 30%;
     position: fixed;
     left: 30%;
-    border: 10px solid #242424;
+    border: 5px solid #242424;
     border-radius: 50px;
     justify-content: center;
     align-items: center;
@@ -83,11 +83,12 @@ p {
     right: -8%;
 }
 
-input {
+input[type="text"], input[type="number"] {
     appearance: none;
     -webkit-appearance: none;
     border: 1px solid black;
     height: 20px;
+    width: auto;
     
 }
 
