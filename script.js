@@ -29,7 +29,7 @@ function addBooktoLibrary(title, author, pages){
     const bookdiv = document.createElement("div")
     bookdiv.setAttribute("id", `${book.title} book`)
     bookdiv.setAttribute("data-id", `${book.id}`)
-    bookdiv.setAttribute("onClick","showIcons()")
+    bookdiv.setAttribute("onClick",`showBookDetail(${book.id})`)
     library.appendChild(bookdiv)
     //creates title 
     const titlediv = document.createElement("p")
@@ -55,6 +55,28 @@ function removeBook(id){
     console.table(myLibrary)
 }
 
+function showBookDetail(id){
+    const bookDetailContainer = document.querySelector(".bookDetail")
+    bookDetailContainer.setAttribute("style","display:block")
+    const bookArray = myLibrary.filter(e => e.id === id)
+    console.log(bookArray)
+    //add title
+    const title = document.querySelector("#bookDetailTitle")
+    title.textContent = bookArray[0].title
+    //add author
+    const author = document.querySelector("#bookDetailAuthor")
+    author.textContent = `Author: ${bookArray[0].author}`
+    //add pages
+    const pages = document.querySelector("#bookDetailPages")
+    pages.textContent = `Pages: ${bookArray[0].pages}`
+
+
+    
+}
+
+function closeBookDetail(){
+    document.getElementsByClassName("bookDetail")[0].style.display = "none"
+}
 
 
 function closeForm(){
@@ -67,11 +89,6 @@ function openForm(){
 
 }
 
-function showIcons(){
-    const icons = document.querySelectorAll("img")
-    console.log(icons)
-    icons[0].style.visibility = "visible"
-}
 
 
 

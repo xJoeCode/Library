@@ -41,7 +41,7 @@ body{
     border-radius: 2px;
 }
 
-p {
+.library p {
     position: relative;
     right: -10%;
     top: 102%;
@@ -64,10 +64,7 @@ p {
 .library #removeBook{
     position: relative;
     right: 5%;
-    top: 86%;
-    visibility:visible;
-    
-    
+    top: 86%;  
 }
 
 .form {
@@ -148,14 +145,24 @@ label {
     width: 100px;
 }
 
-ul{
-   
-    
-}
+
 
 li{
     list-style: none;
     margin: 20px;
     display: flex;
     align-items: center;
+}
+
+ .bookDetail{
+    display:none;
+    align-self: center;
+    background-color: rgb(255, 255, 255);
+    width: 500px;
+    height: 500px;
+    position: fixed;
+    border: 5px solid #242424;
+    overflow:hidden;
+    font-family:var(--main-font-family) ;
+    z-index: 9;
 }
