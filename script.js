@@ -24,12 +24,12 @@ function addBooktoLibrary(title, author, pages){
     const book = new Book(title, author, pages)
     myLibrary.push(book)
     book.id = myLibrary.length
-    console.table(myLibrary)
     const library = document.querySelector(".library")
     //creates main book element
     const bookdiv = document.createElement("div")
     bookdiv.setAttribute("id", `${book.title} book`)
     bookdiv.setAttribute("data-id", `${book.id}`)
+    bookdiv.setAttribute("onClick","showIcons()")
     library.appendChild(bookdiv)
     //creates title 
     const titlediv = document.createElement("p")
@@ -41,14 +41,21 @@ function addBooktoLibrary(title, author, pages){
     deleteButton.setAttribute("id", "removeBook")
     deleteButton.setAttribute("onClick", `removeBook(${book.id})`)
     bookdiv.appendChild(deleteButton) 
+    console.table(myLibrary)
+
     }
 }
 
 function removeBook(id){
+    //removes book element from html
     const bookForRemoval = document.querySelector(`[data-id="${id}"]`)
-    console.log(bookForRemoval)
     bookForRemoval.remove()
+    //also remove book from array
+    myLibrary = myLibrary.filter(e => e.id !== id)
+    console.table(myLibrary)
 }
+
+
 
 function closeForm(){
     document.getElementsByClassName("form")[0].style.display = "none"
@@ -60,19 +67,13 @@ function openForm(){
 
 }
 
-
-
-function displaybook(){
-    for (const books of myLibrary){
-        const library = document.querySelector(".library")
-        const book = document.createElement("div")
-        book.setAttribute("class", "book")
-        library.appendChild(book)
-        const title = document.createElement("p")
-        title.innerHTML = books.title
-        book.appendChild(title)
-    } 
+function showIcons(){
+    const icons = document.querySelectorAll("img")
+    console.log(icons)
+    icons[0].style.visibility = "visible"
 }
+
+
 
 
 //const firstbook = new Book("Harry Potter", "JK Rowling", 300);

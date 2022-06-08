@@ -65,22 +65,30 @@ p {
     position: relative;
     right: 5%;
     top: 86%;
+    visibility:visible;
     
     
 }
 
 .form {
     align-self: center;
-    place-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     display: hidden;
     background-color: rgb(255, 255, 255);
-    width: 400px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     position: fixed;
     border: 5px solid #242424;
     overflow:hidden;
     font-family:var(--main-font-family) ;
     z-index: 9;
+}
+
+.form h1{
+    font-family: var(--main-font-family);
+    font-size: 3rem;
 }
 
 .form #closeButton{
@@ -95,20 +103,21 @@ p {
 input[type="text"], input[type="number"] {
     appearance: none;
     -webkit-appearance: none;
+    font-family: var(--main-font-family);
+    font-size: 1.5rem;
     border: 1px solid black;
-    height: 20px;
-    width: auto;
+    height: 30px;
+    width: 60%;
+  
 }
 
 input[type="checkbox"]{
     appearance: none;
     -webkit-appearance: none;
-    content: "✔";
-    width: 1.3em;
-    height: 1.3em;
-    border: 1px solid gray;
-    position: absolute;
-    bottom: 30%;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    
 }
 input[type="checkbox"]:checked{
     background: #303030;
@@ -122,20 +131,31 @@ input[type="checkbox"]:checked{
     font-family: var(--main-font-family);
     font-size: 1rem;
     background-color: #bebebe;
-    width: 100px;
-    height: 30px;
+    width: 200px;
+    height: 50px;
     cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
 
+.form button:hover{
+background-color: aquamarine;
 }
 
 label {
     font-family:var(--main-font-family);
-    font-size: 1.5rem;
     display: inline-block;
-    width: 80px;
+    font-size: 1.5rem;
+    width: 100px;
+}
+
+ul{
+   
+    
 }
 
 li{
     list-style: none;
-    margin: 10px;
+    margin: 20px;
+    display: flex;
+    align-items: center;
 }
