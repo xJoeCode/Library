@@ -46,7 +46,8 @@ body{
 .library p {
     position: relative;
     right: -10%;
-    top: 102%;
+    top: 101%;
+    font-size: 1.2rem;
     font-family: var(--main-font-family);
 }
 

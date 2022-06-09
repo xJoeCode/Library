@@ -41,8 +41,7 @@ function addBooktoLibrary(title, author, pages, read){
     // creates a read icon on book element if the book is marked as read
     if (book.read == true){
         markBookAsRead(book.id)
-    }
-
+        }
     }
 }
 
@@ -50,13 +49,14 @@ function removeBook(id){
     //removes book element from html
     const bookForRemoval = document.querySelector(`[data-id="${id}"]`)
     bookForRemoval.remove()
-    //also remove book from array
+    //also removes book from array
     myLibrary = myLibrary.filter(e => e.id !== id)
     closeBookDetail()
     console.table(myLibrary)
 }
 
 function markBookAsRead(id){
+    //adds icon to show that book is read
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     const readIcon = document.createElement('object')
     readIcon.setAttribute("data", "./Assets/read.svg")
@@ -64,6 +64,24 @@ function markBookAsRead(id){
     readIcon.setAttribute("style", "width: 25px")
     readIcon.setAttribute("height", "height: 25px")
     bookdiv.appendChild(readIcon)
+    //Also changes the array object's read properties to true
+    const bookArray = myLibrary.filter(e => e.id === id)
+    bookArray[0].read = true
+    closeBookDetail()
+    console.log(bookArray)
+    console.table(myLibrary)
+}
+
+function markBookAsUnread(id){
+    //adds icon to show that book is read
+    const bookdiv = document.querySelector(`[data-id="${id}"]`)
+    bookdiv.querySelector("object").remove()
+    //Also changes the array object's read properties to false
+    const bookArray = myLibrary.filter(e => e.id === id)
+    bookArray[0].read = false
+    closeBookDetail()
+    console.log(bookArray)
+    console.table(myLibrary)
 }
 
 function showBookDetail(id){
@@ -83,9 +101,12 @@ function showBookDetail(id){
     //add "Remove Book" Button
     const removeBookButton = document.querySelector("#removeBookButton")
     removeBookButton.setAttribute("onClick",`removeBook(${id})`)
-
+    // add "Mark as Read" Button
     const markAsreadButton = document.querySelector("#markAsReadButton")
     markAsreadButton.setAttribute("onClick",`markBookAsRead(${id})`)
+    // add "Mark As Unread" Button"
+    const markasUnreadButton = document.querySelector("#markAsUnreadButton")
+    markasUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)
 
 
     
