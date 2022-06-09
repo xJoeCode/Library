@@ -1,9 +1,11 @@
-function Book (title, author, pages, favorite){
+function Book (title, author, pages, read){
     this.title = title
     this.author = author
     this.pages = pages
-    this.favorite = favorite
-    this.read = 'not read yet'
+    this.read = read 
+    if(read == undefined){
+       return this.read = false
+    }
     this.id = 1
     this.info = function(){
         return(`${this.title} by ${this.author} has ${this.pages} pages, ${this.read}`)
@@ -13,7 +15,7 @@ function Book (title, author, pages, favorite){
 let myLibrary = []
 
 
-function addBooktoLibrary(title, author, pages){
+function addBooktoLibrary(title, author, pages, read){
     if (title == "" || author == "" || pages < 0 || pages == ""){
         console.log("false" + author + title + pages)
         alert("Please check form inputs and try again")
@@ -21,7 +23,7 @@ function addBooktoLibrary(title, author, pages){
     } else {
 
     closeForm()
-    const book = new Book(title, author, pages)
+    const book = new Book(title, author, pages, read)
     myLibrary.push(book)
     book.id = myLibrary.length
     const library = document.querySelector(".library")
@@ -35,13 +37,16 @@ function addBooktoLibrary(title, author, pages){
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
     bookdiv.appendChild(titlediv)
-    //creates delete button
-    const deleteButton = document.createElement("img")
-    deleteButton.setAttribute("src", "./Assets/delete.svg")
-    deleteButton.setAttribute("id", "removeBook")
-    deleteButton.setAttribute("onClick", `removeBook(${book.id})`)
-    bookdiv.appendChild(deleteButton) 
-    console.table(myLibrary)
+    console.log(book)
+    // creates a read icon on book element if the book is marked as read
+    if (book.read == true){
+       const readIcon = document.createElement('object')
+       readIcon.setAttribute("data", "./Assets/read.svg")
+       readIcon.setAttribute("class", "readIcon")
+       readIcon.setAttribute("style", "width: 25px")
+       readIcon.setAttribute("height", "height: 25px")
+       bookdiv.appendChild(readIcon)
+    }
 
     }
 }
@@ -103,7 +108,7 @@ function openForm(){
 
 
 
-addBooktoLibrary("Harry Potter", "JK Rowling", 300)
+addBooktoLibrary("Harry Potter", "JK Rowling", 300, true)
 addBooktoLibrary("The Lightning", "Lorem Ipsum", 100)
 
 

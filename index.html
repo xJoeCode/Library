@@ -36,11 +36,15 @@
                 <input type="checkbox" id="favorite" name="favorite" value ="favorite"> 
             </li>
             <li>
-                <label for="read">Read</label>
-                <input type="checkbox" id="read" name="read" value="read">
+                <label for="read">Mark as Read</label>
+                <input type="checkbox" id="read" name="read">
             </li>
             <li>
-                <button type="button" onclick="addBooktoLibrary(document.getElementById('title').value, document.getElementById('author').value, document.getElementById('pages').value)" >Submit</button>
+                <button type="button" onclick="
+                    addBooktoLibrary(document.getElementById('title').value,
+                     document.getElementById('author').value, 
+                     document.getElementById('pages').value, 
+                     document.getElementById('read').checked)">Submit</button>
             </li>
         </ul>
     </form>
@@ -59,9 +63,7 @@
         <p id="bookDetailAuthor"></p>
         <p id="bookDetailPages"></p>
         <button type="button" id="removeBookButton">Remove from Library</button>
-        <button>
-
-        </button>
+        <button type="button" id="markAsReadButton"> Mark As Read</button>
     </div>
 </body>
 </html>

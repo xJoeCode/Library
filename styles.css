@@ -29,9 +29,11 @@ body{
 }
 
 .library div {
+    position: relative;
     width: 10rem;
     height: auto;
     aspect-ratio: 2/3;
+    box-sizing: border-box;
     margin:  10px;
     margin-bottom: 40px;
     background-image:url(./Assets/bg1.jpg);
@@ -46,6 +48,12 @@ body{
     right: -10%;
     top: 102%;
     font-family: var(--main-font-family);
+}
+
+.library .readIcon{
+    position: absolute;
+    right: 0%;
+    bottom: -15%;
 }
 
 #addbook{
@@ -105,8 +113,9 @@ input[type="text"], input[type="number"] {
     border: 1px solid black;
     height: 30px;
     width: 60%;
-  
 }
+
+
 
 input[type="checkbox"]{
     appearance: none;
@@ -117,7 +126,7 @@ input[type="checkbox"]{
     
 }
 input[type="checkbox"]:checked{
-    background: #303030;
+    background: aquamarine;
 }
 
 
@@ -130,6 +139,7 @@ button{
     background-color: #bebebe;
     width: 200px;
     height: 50px;
+    margin: 5px;
     cursor: pointer;
     transition: 0.5s ease-in-out;
 }
