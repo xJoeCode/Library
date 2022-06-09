@@ -16,7 +16,7 @@ let myLibrary = []
 
 
 function addBooktoLibrary(title, author, pages, read){
-    if (title == "" || author == "" || pages < 0 || pages == ""){
+    if (title == "" || author == "" || pages < 1 || pages == ""){
         console.log("false" + author + title + pages)
         alert("Please check form inputs and try again")
         
@@ -71,6 +71,7 @@ function markBookAsRead(id){
     console.log(bookArray)
     console.table(myLibrary)
 }
+
 
 function markBookAsUnread(id){
     //adds icon to show that book is read
@@ -132,11 +133,11 @@ function showLibraryStats(){
         libraryStats.style.height = "50px"
         list.style.display = "none"
     } else {
-        list.style.display = "block"
+        list.style.display = "flex"
         libraryStats.style.width = "400px"
-        libraryStats.style.height = "300px"
+        libraryStats.style.height = "200px"
         const totalbooks = document.querySelector("#totalNumberOfBooks")
-        totalbooks.textContent = `Total number of Books owned: ${myLibrary.length}`
+        totalbooks.textContent = `Total number of books owned: ${myLibrary.length}`
         const totalbooksread = document.querySelector("#totalNumberOfBooksRead")
         totalbooksread.textContent =`Total number of books read: ${myLibrary.reduce((total, book) =>{
         return total + Number(book.read == true)},0)}`

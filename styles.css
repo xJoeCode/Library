@@ -41,6 +41,12 @@ body{
     cursor: pointer;
     position: relative;
     border-radius: 2px;
+    box-shadow: 3px 3px 5px rgb(66, 66, 66);
+    transition: 0.3s ease-in-out;
+}
+
+.library div:hover{
+    transform: translate(0,-10px);
 }
 
 .library p {
@@ -84,7 +90,7 @@ body{
     display: hidden;
     background-color: rgb(255, 255, 255);
     width: 500px;
-    height: 500px;
+    height: 600px;
     position: fixed;
     border: 5px solid #242424;
     overflow:hidden;
@@ -146,7 +152,7 @@ button{
 }
 
 button:hover{
-background-color: aquamarine;
+    background-color: aquamarine;
 }
 
 label {
@@ -202,11 +208,17 @@ border-radius: 5px;
 }
 
 .libraryStat ul{
-    display: flex;
-    justify-content: center;
+    padding: 0;
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    
 }
 
 .libraryStat li {
+    margin: 5px;
+    justify-self: center;
     list-style: none;
+    font-family: var(--main-font-family);
+    font-size: 1.5rem;
 }
