@@ -37,12 +37,12 @@ function addBooktoLibrary(title, author, pages, read){
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
     bookdiv.appendChild(titlediv)
-    console.log(book)
     // creates a read icon on book element if the book is marked as read
     if (book.read == true){
         markBookAsRead(book.id)
         }
     }
+    console.table(myLibrary)
 }
 
 function removeBook(id){
@@ -106,16 +106,12 @@ function showBookDetail(id){
     markAsreadButton.setAttribute("onClick",`markBookAsRead(${id})`)
     // add "Mark As Unread" Button"
     const markasUnreadButton = document.querySelector("#markAsUnreadButton")
-    markasUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)
-
-
-    
+    markasUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)  
 }
 
 function closeBookDetail(){
     document.getElementsByClassName("bookDetail")[0].style.display = "none"
 }
-
 
 function closeForm(){
     document.getElementsByClassName("form")[0].style.display = "none"
@@ -124,16 +120,21 @@ function closeForm(){
 
 function openForm(){
     document.getElementsByClassName("form")[0].style.display = "flex"
-
 }
 
 
-
-
-
-//const firstbook = new Book("Harry Potter", "JK Rowling", 300);
-//firstbook.addBooktoLibrary()
-//console.log(myLibrary)
+function showLibraryStats(){
+    console.table(myLibrary)
+    const libraryStats = document.querySelector(".libraryStat")
+    libraryStats.style.width = "400px"
+    libraryStats.style.height = "300px"
+    const totalbooks = document.querySelector("#totalNumberOfBooks")
+    totalbooks.textContent = `Total number of Books owned: ${myLibrary.length}`
+    const totalbooksread = document.querySelector("#totalNumberOfBooksRead")
+    totalbooksread.textContent =`Total number of books read: ${myLibrary.reduce((total, book) =>{
+    return total + Number(book.read == true)},0)}`
+    console.table(myLibrary)
+}
 
 
 

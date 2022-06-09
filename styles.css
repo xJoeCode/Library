@@ -24,8 +24,8 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content:  center;
-    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .library div {
@@ -158,7 +158,7 @@ label {
 
 
 
-li{
+.form li{
     list-style: none;
     margin: 20px;
     display: flex;
@@ -185,4 +185,27 @@ li{
 .bookDetail p{
     font-size: 1.5rem;
     font-family: var(--main-font-family);
+}
+
+.libraryStat{
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 50px;
+width: 100px;
+height: 50px;
+cursor: pointer;
+background-color: #242424;
+font-family: var(--main-font-family);
+color: white;
+border-radius: 5px;
+}
+
+.libraryStat ul{
+    display: flex;
+    justify-content: center;
+}
+
+.libraryStat li {
+    list-style: none;
 }
