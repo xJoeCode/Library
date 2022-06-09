@@ -204,6 +204,7 @@ border-radius: 5px;
 .libraryStat ul{
     display: flex;
     justify-content: center;
+    display: none;
 }
 
 .libraryStat li {

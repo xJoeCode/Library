@@ -126,14 +126,22 @@ function openForm(){
 function showLibraryStats(){
     console.table(myLibrary)
     const libraryStats = document.querySelector(".libraryStat")
-    libraryStats.style.width = "400px"
-    libraryStats.style.height = "300px"
-    const totalbooks = document.querySelector("#totalNumberOfBooks")
-    totalbooks.textContent = `Total number of Books owned: ${myLibrary.length}`
-    const totalbooksread = document.querySelector("#totalNumberOfBooksRead")
-    totalbooksread.textContent =`Total number of books read: ${myLibrary.reduce((total, book) =>{
-    return total + Number(book.read == true)},0)}`
-    console.table(myLibrary)
+    const list = libraryStats.querySelector("ul")
+    if (libraryStats.style.width == "400px"){
+        libraryStats.style.width = "100px"
+        libraryStats.style.height = "50px"
+        list.style.display = "none"
+    } else {
+        list.style.display = "block"
+        libraryStats.style.width = "400px"
+        libraryStats.style.height = "300px"
+        const totalbooks = document.querySelector("#totalNumberOfBooks")
+        totalbooks.textContent = `Total number of Books owned: ${myLibrary.length}`
+        const totalbooksread = document.querySelector("#totalNumberOfBooksRead")
+        totalbooksread.textContent =`Total number of books read: ${myLibrary.reduce((total, book) =>{
+        return total + Number(book.read == true)},0)}`
+        console.table(myLibrary)
+    }
 }
 
 
