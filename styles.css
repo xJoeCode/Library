@@ -88,7 +88,7 @@ body{
     font-size: 3rem;
 }
 
-.form #closeButton{
+ #closeButton{
     display: block;
     cursor: pointer;
     position: absolute;
@@ -121,7 +121,7 @@ input[type="checkbox"]:checked{
 }
 
 
-.form button{
+button{
     appearance: none;
     -webkit-appearance: none; 
     border: none;
@@ -134,7 +134,7 @@ input[type="checkbox"]:checked{
     transition: 0.5s ease-in-out;
 }
 
-.form button:hover{
+button:hover{
 background-color: aquamarine;
 }
 
@@ -157,12 +157,21 @@ li{
  .bookDetail{
     display:none;
     align-self: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(255, 255, 255);
     width: 500px;
     height: 500px;
     position: fixed;
     border: 5px solid #242424;
+    
     overflow:hidden;
     font-family:var(--main-font-family) ;
     z-index: 9;
+}
+
+.bookDetail p{
+    font-size: 1.5rem;
+    font-family: var(--main-font-family);
 }

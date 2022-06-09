@@ -52,12 +52,13 @@ function removeBook(id){
     bookForRemoval.remove()
     //also remove book from array
     myLibrary = myLibrary.filter(e => e.id !== id)
+    closeBookDetail()
     console.table(myLibrary)
 }
 
 function showBookDetail(id){
     const bookDetailContainer = document.querySelector(".bookDetail")
-    bookDetailContainer.setAttribute("style","display:block")
+    bookDetailContainer.setAttribute("style","display:flex")
     const bookArray = myLibrary.filter(e => e.id === id)
     console.log(bookArray)
     //add title
@@ -69,6 +70,9 @@ function showBookDetail(id){
     //add pages
     const pages = document.querySelector("#bookDetailPages")
     pages.textContent = `Pages: ${bookArray[0].pages}`
+    //add "Remove Book" Button
+    const removeBookButton = document.querySelector("#removeBookButton")
+    removeBookButton.setAttribute("onClick",`removeBook(${id})`)
 
 
     
