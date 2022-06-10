@@ -57,7 +57,7 @@ body{
     font-family: var(--main-font-family);
 }
 
-.library .readIcon{
+.library object{
     position: absolute;
     right: 0%;
     bottom: -15%;

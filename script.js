@@ -19,7 +19,7 @@ let myLibrary = []
 
 
 function addBooktoLibrary(title, author, totalPages, currentPage, read){
-    if (title == '' || author == '' || totalPages < 1 || currentPage > totalPages){
+    if (title == '' || author == '' || totalPages < 1 || currentPage > totalPages || (currentPage != 0 && read == true)){
             console.log("false" + author + title + totalPages)
             alert("Please check form inputs and try again")
     } else {
@@ -43,7 +43,10 @@ function addBooktoLibrary(title, author, totalPages, currentPage, read){
     // creates a read icon on book element if the book is marked as read
     if (book.read == true){
         markBookAsRead(book.id)
+        } else if (book.currentPage > 0){
+            markBookAsCurrenlyReading(book.id, book.currentPage)
         }
+        
     }
     
     console.table(myLibrary)
@@ -71,6 +74,7 @@ function markBookAsRead(id){
     //Also changes the array object's read properties to true
     const bookArray = myLibrary.filter(e => e.id === id)
     bookArray[0].read = true
+    bookArray[0].currentPage = bookArray[0].totalPages
     closeBookDetail()
     console.log(bookArray)
     console.table(myLibrary)
@@ -84,9 +88,29 @@ function markBookAsUnread(id){
     //Also changes the array object's read properties to false
     const bookArray = myLibrary.filter(e => e.id === id)
     bookArray[0].read = false
+    bookArray[0].currentPage = 0
     closeBookDetail()
     console.log(bookArray)
     console.table(myLibrary)
+}
+
+function markBookAsCurrenlyReading(id, currentPage){
+
+    const bookdiv = document.querySelector(`[data-id="${id}"]`)
+    const currentlyReadingIcon = document.createElement('object')
+    currentlyReadingIcon.setAttribute("data", "./Assets/CurrentlyReading.svg")
+    currentlyReadingIcon.setAttribute("class", "currentlyReadingIcon")
+    currentlyReadingIcon.setAttribute("style", "width: 25px")
+    currentlyReadingIcon.setAttribute("height", "height: 25px")
+    bookdiv.appendChild(currentlyReadingIcon)
+    //Also changes the array object's read properties to false
+    const bookArray = myLibrary.filter(e => e.id === id)
+    bookArray[0].read = false
+    bookArray[0].currentPage = currentPage
+    closeBookDetail()
+    console.log(bookArray)
+    console.table(myLibrary)
+
 }
 
 function showBookDetail(id){
@@ -100,7 +124,14 @@ function showBookDetail(id){
     //add author
     const author = document.querySelector("#bookDetailAuthor")
     author.textContent = `Author: ${bookArray[0].author}`
-    //add pages
+    //add current pages
+    const currentPage = document.querySelector("#bookDetailCurrentPage")
+    if (bookArray[0].currentPage > 0 ){
+        currentPage.textContent = `Current Page: ${bookArray[0].currentPage}`
+    } else {
+        currentPage.textContent = "Currently Not Reading"
+    }
+    //add total pages
     const totalPages = document.querySelector("#bookDetailPages")
     totalPages.textContent = `Total Pages: ${bookArray[0].totalPages}`
     //add "Remove Book" Button
