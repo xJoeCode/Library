@@ -1,31 +1,34 @@
-function Book (title, author, pages, read){
+function Book (title, author, totalPages, currentPage, read){
     this.title = title
     this.author = author
-    this.pages = pages
+    this.totalPages = parseInt(totalPages)
+    if (currentPage == ""){
+        this.currentPage = 0
+        console.log(this.currentPage)
+        } else {
+            this.currentPage = parseInt(currentPage)
+        }
     this.read = read 
     this.id = 1
-    if(read == undefined){
-       return this.read = false
-    }
     this.info = function(){
         return(`${this.title} by ${this.author} has ${this.pages} pages, ${this.read}`)
-    }   
+        }   
 }
 
 let myLibrary = []
 
 
-function addBooktoLibrary(title, author, pages, read){
-    if (title == "" || author == "" || pages < 1 || pages == ""){
-        console.log("false" + author + title + pages)
-        alert("Please check form inputs and try again")
-        
+function addBooktoLibrary(title, author, totalPages, currentPage, read){
+    if (title == '' || author == '' || totalPages < 1 || currentPage > totalPages){
+            console.log("false" + author + title + totalPages)
+            alert("Please check form inputs and try again")
     } else {
 
     closeForm()
-    const book = new Book(title, author, pages, read)
+    const book = new Book(title, author, totalPages, currentPage, read)
     myLibrary.push(book)
     book.id = myLibrary.length
+    console.log(book)
     const library = document.querySelector(".library")
     //creates main book element
     const bookdiv = document.createElement("div")
@@ -42,6 +45,7 @@ function addBooktoLibrary(title, author, pages, read){
         markBookAsRead(book.id)
         }
     }
+    
     console.table(myLibrary)
 }
 
@@ -97,8 +101,8 @@ function showBookDetail(id){
     const author = document.querySelector("#bookDetailAuthor")
     author.textContent = `Author: ${bookArray[0].author}`
     //add pages
-    const pages = document.querySelector("#bookDetailPages")
-    pages.textContent = `Pages: ${bookArray[0].pages}`
+    const totalPages = document.querySelector("#bookDetailPages")
+    totalPages.textContent = `Total Pages: ${bookArray[0].totalPages}`
     //add "Remove Book" Button
     const removeBookButton = document.querySelector("#removeBookButton")
     removeBookButton.setAttribute("onClick",`removeBook(${id})`)
@@ -147,8 +151,8 @@ function showLibraryStats(){
 
 
 
-addBooktoLibrary("Harry Potter", "JK Rowling", 300, true)
-addBooktoLibrary("The Lightning", "Lorem Ipsum", 100)
+addBooktoLibrary("Harry Potter", "JK Rowling", 300, 0, true)
+addBooktoLibrary("The Lightning", "Lorem Ipsum", 100,20,false)
 
 
 
