@@ -179,13 +179,29 @@ label {
     align-items: center;
     background-color: rgb(255, 255, 255);
     width: 500px;
-    height: 500px;
+    height: 800px;
     position: fixed;
     border: 5px solid #242424;
-    
     overflow:hidden;
     font-family:var(--main-font-family) ;
     z-index: 9;
+}
+.bookDetail ul{
+    margin: 20px;
+    padding: 0;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.bookDetail li{
+    padding: 5px;
+    list-style: none;
+    display: inline-block;
+}
+
+.bookDetail input[type="number"]{
+    width: 80px;
 }
 
 .bookDetail p{
