@@ -82,14 +82,20 @@
                     parseFloat(document.getElementById('CurrentPageNumber').value))">Mark As Currently Reading</button>
             </li>
         </ul>
+        <ul>
+            <li>
+                <button type="button" id="markPageAsReadButton">Mark current page as read</button>
+            </li>
+            <li></li>
+        </ul>
 
     </div>
     <div class="libraryStat" onclick="showLibraryStats()"> 
-        <p>My Stats</p>
+        <p>My Book Stats</p>
         <ul>
             <li id="totalNumberOfBooks"></li>
             <li id="totalNumberOfBooksRead"></li>
-            <li></li>
+            <li id="totalNumberOfBooksCurrentlyReading"></li>
         </ul>
     </div>
 </body>

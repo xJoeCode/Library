@@ -103,7 +103,8 @@ function markBookAsCurrenlyReading(id, currentPage){
      //checks if book is previously read and removes the read icon
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     const bookArray = myLibrary.filter(e => e.id === id)
-    if(bookArray[0].read == true){
+    console.log(bookdiv.querySelector("object"))
+    if(bookArray[0].read == true || bookdiv.querySelector("object") != null){
         bookdiv.querySelector("object").remove()}
     const currentlyReadingIcon = document.createElement('object')
     currentlyReadingIcon.setAttribute("data", "./Assets/CurrentlyReading.svg")
@@ -156,9 +157,10 @@ function showBookDetail(id){
     // add "Mark As Unread" Button"
     const markAsUnreadButton = document.querySelector("#markAsUnreadButton")
     markAsUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)  
+    // add  "Mark Page as read" Button
+    document.querySelector("#markPageAsReadButton").setAttribute("onClick", `markBookAsCurrenlyReading(${id}, ${(bookArray[0].currentPage + 1)})`)
 
-    // const markAsCurrentlyReadingButton = document.querySelector("#markBookAsReadingButton")
-    // markAsCurrentlyReadingButton.setAttribute("onClick", `markBookAsCurrenlyReading(${id}`)
+    
 }
 
 function closeBookDetail(){
@@ -179,22 +181,28 @@ function showLibraryStats(){
     console.table(myLibrary)
     const libraryStats = document.querySelector(".libraryStat")
     const list = libraryStats.querySelector("ul")
-    if (libraryStats.style.width == "400px"){
-        libraryStats.style.width = "100px"
+    if (libraryStats.style.width == "600px"){
+        libraryStats.style.width = "200px"
         libraryStats.style.height = "50px"
         list.style.display = "none"
     } else {
         list.style.display = "flex"
-        libraryStats.style.width = "400px"
+        libraryStats.style.width = "600px"
         libraryStats.style.height = "200px"
         const totalbooks = document.querySelector("#totalNumberOfBooks")
         totalbooks.textContent = `Total number of books owned: ${myLibrary.length}`
         const totalbooksread = document.querySelector("#totalNumberOfBooksRead")
         totalbooksread.textContent =`Total number of books read: ${myLibrary.reduce((total, book) =>{
         return total + Number(book.read == true)},0)}`
+        const totalBooksCurrentlyReading = document.querySelector("#totalNumberOfBooksCurrentlyReading")
+        totalBooksCurrentlyReading.textContent = `Total number of books currently reading: ${myLibrary.reduce((total,book) =>{
+            return total + Number(book.currentPage != 0 && book.currentPage != book.totalPages)},0)}`
+        }
+
+        
         console.table(myLibrary)
     }
-}
+
 
 
 
