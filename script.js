@@ -63,26 +63,30 @@ function removeBook(id){
 }
 
 function markBookAsRead(id){
-    //adds icon to show that book is read
+    //checks if book is previously being read and removes the currently reading icon
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
+    const bookArray = myLibrary.filter(e => e.id === id)
+    if(bookArray[0].read == false && bookArray[0].currentPage != 0){
+        bookdiv.querySelector("object").remove()}
+    //adds "book is read" icon
     const readIcon = document.createElement('object')
     readIcon.setAttribute("data", "./Assets/read.svg")
     readIcon.setAttribute("class", "readIcon")
     readIcon.setAttribute("style", "width: 25px")
     readIcon.setAttribute("height", "height: 25px")
     bookdiv.appendChild(readIcon)
-    //Also changes the array object's read properties to true
-    const bookArray = myLibrary.filter(e => e.id === id)
-    bookArray[0].read = true
+    //Also changes the array object's read properties to true and sets current page to the last page
     bookArray[0].currentPage = bookArray[0].totalPages
+    bookArray[0].read = true
     closeBookDetail()
     console.log(bookArray)
     console.table(myLibrary)
-}
+    }
+
 
 
 function markBookAsUnread(id){
-    //adds icon to show that book is read
+    //removes all icons
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     bookdiv.querySelector("object").remove()
     //Also changes the array object's read properties to false
@@ -95,8 +99,12 @@ function markBookAsUnread(id){
 }
 
 function markBookAsCurrenlyReading(id, currentPage){
-
+    console.log(`${id},${currentPage}`)
+     //checks if book is previously read and removes the read icon
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
+    const bookArray = myLibrary.filter(e => e.id === id)
+    if(bookArray[0].read == true){
+        bookdiv.querySelector("object").remove()}
     const currentlyReadingIcon = document.createElement('object')
     currentlyReadingIcon.setAttribute("data", "./Assets/CurrentlyReading.svg")
     currentlyReadingIcon.setAttribute("class", "currentlyReadingIcon")
@@ -104,7 +112,7 @@ function markBookAsCurrenlyReading(id, currentPage){
     currentlyReadingIcon.setAttribute("height", "height: 25px")
     bookdiv.appendChild(currentlyReadingIcon)
     //Also changes the array object's read properties to false
-    const bookArray = myLibrary.filter(e => e.id === id)
+    
     bookArray[0].read = false
     bookArray[0].currentPage = currentPage
     closeBookDetail()
@@ -118,6 +126,9 @@ function showBookDetail(id){
     bookDetailContainer.setAttribute("style","display:flex")
     const bookArray = myLibrary.filter(e => e.id === id)
     console.log(bookArray)
+    // references the id values in a hidden part of the form which is used later for the "mark book as reading" function argument
+    const booknumber = document.querySelector("#bookDetailID")
+    booknumber.textContent = id
     //add title
     const title = document.querySelector("#bookDetailTitle")
     title.textContent = bookArray[0].title
@@ -141,8 +152,11 @@ function showBookDetail(id){
     const markAsreadButton = document.querySelector("#markAsReadButton")
     markAsreadButton.setAttribute("onClick",`markBookAsRead(${id})`)
     // add "Mark As Unread" Button"
-    const markasUnreadButton = document.querySelector("#markAsUnreadButton")
-    markasUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)  
+    const markAsUnreadButton = document.querySelector("#markAsUnreadButton")
+    markAsUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)  
+
+    // const markAsCurrentlyReadingButton = document.querySelector("#markBookAsReadingButton")
+    // markAsCurrentlyReadingButton.setAttribute("onClick", `markBookAsCurrenlyReading(${id}`)
 }
 
 function closeBookDetail(){
