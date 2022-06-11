@@ -9,13 +9,11 @@ h1{
     font-family: var(--main-font-family);
 }
 
-
 .library {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    
 }
 
 body{
@@ -28,20 +26,18 @@ body{
     align-items: center;
 }
 
-.library div {
-    position: relative;
+.bookElement {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    
     width: 10rem;
     height: auto;
-    aspect-ratio: 2/3;
     box-sizing: border-box;
     margin:  10px;
-    margin-bottom: 40px;
-    background-image:url(./Assets/bg1.jpg);
-    background-size: cover;
+    gap: 10px;
     cursor: pointer;
     position: relative;
     border-radius: 2px;
-    box-shadow: 3px 3px 5px rgb(66, 66, 66);
     transition: 0.3s ease-in-out;
 }
 
@@ -49,19 +45,25 @@ body{
     transform: translate(0,-10px);
 }
 
-.library p {
-    position: relative;
-    right: -10%;
-    top: 101%;
-    font-size: 1.2rem;
-    font-family: var(--main-font-family);
+
+.bookElement img{
+    grid-column: 1 /-1;
+    width: 10rem;
+    height: 15rem;
+    box-shadow: 3px 3px 5px rgb(66, 66, 66);
+    
+    
 }
 
-.library object{
-    position: absolute;
-    right: 0%;
-    bottom: -15%;
+.bookElement p{
+    display: block;
+    margin: 0;
+    position: relative;  
+    font-family: var(--main-font-family);
+    font-size: 1rem;
 }
+
+
 
 #addbook{
     background-image: none;
@@ -69,6 +71,15 @@ body{
     place-content: center center;
     background-color: #242424;
     order: 1;
+    width: 10rem;
+    height: 15rem;
+    aspect-ratio: 2/3;
+    margin:  10px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 2px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 3px 3px 5px rgb(66, 66, 66);
 }
 
 #addbook svg{
@@ -89,8 +100,8 @@ body{
     align-items: center;
     display: hidden;
     background-color: rgb(255, 255, 255);
-    width: 500px;
-    height: 600px;
+    width: 30%;
+    height: 800px;
     position: fixed;
     border: 5px solid #242424;
     overflow:hidden;
@@ -103,6 +114,23 @@ body{
     font-size: 3rem;
 }
 
+.form ul{
+    padding: 0;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-content: center;
+}
+
+.form li{
+    list-style: none;
+    margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+
+}
+
  #closeButton{
     display: block;
     cursor: pointer;
@@ -112,14 +140,15 @@ body{
     right: 0%;
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"], input[type="number"], input[type="url"] {
     appearance: none;
     -webkit-appearance: none;
     font-family: var(--main-font-family);
     font-size: 1.5rem;
     border: 1px solid black;
     height: 30px;
-    width: 60%;
+    width: 200px;
+    justify-self: end;
 }
 
 
@@ -130,6 +159,7 @@ input[type="checkbox"]{
     width: 20px;
     height: 20px;
     border: 1px solid black;
+    justify-self: end;
     
 }
 input[type="checkbox"]:checked{
@@ -148,6 +178,7 @@ button{
     height: 50px;
     margin: 5px;
     cursor: pointer;
+    justify-self: center;
     transition: 0.5s ease-in-out;
 }
 
@@ -157,19 +188,13 @@ button:hover{
 
 label {
     font-family:var(--main-font-family);
-    display: inline-block;
+    display: block;
     font-size: 1.5rem;
-    width: 100px;
+    width: 100%;
+    text-align: start;
+  
 }
 
-
-
-.form li{
-    list-style: none;
-    margin: 20px;
-    display: flex;
-    align-items: center;
-}
 
  .bookDetail{
     display:none;
@@ -210,17 +235,17 @@ label {
 }
 
 .libraryStat{
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-top: 50px;
-width: 200px;
-height: 50px;
-cursor: pointer;
-background-color: #242424;
-font-family: var(--main-font-family);
-color: white;
-border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #242424;
+    font-family: var(--main-font-family);
+    color: white;
+    border-radius: 5px;
 }
 
 .libraryStat ul{

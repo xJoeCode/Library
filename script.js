@@ -18,7 +18,7 @@ function Book (title, author, totalPages, currentPage, read){
 let myLibrary = []
 
 
-function addBooktoLibrary(title, author, totalPages, currentPage, read){
+function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
     if (title == '' || author == '' || totalPages < 1 || currentPage > totalPages || (currentPage != 0 && read == true)){
             console.log("false" + author + title + totalPages)
             alert("Please check form inputs and try again")
@@ -36,6 +36,10 @@ function addBooktoLibrary(title, author, totalPages, currentPage, read){
     bookdiv.setAttribute("data-id", `${book.id}`)
     bookdiv.setAttribute("onClick",`showBookDetail(${book.id})`)
     library.appendChild(bookdiv)
+    // adds background image
+    const backgroundImage = document.createElement("img")
+    backgroundImage.setAttribute("src",`${url}`)
+    bookdiv.appendChild(backgroundImage)
     //creates title 
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
@@ -123,7 +127,7 @@ function markBookAsCurrenlyReading(id, currentPage){
         console.log(bookArray)
         console.table(myLibrary)
     } else if(currentPage > bookArray[0].totalPages) {
-        alert("Kindly check page number values and try again")
+        markBookAsRead(id)
         } else if( currentPage == bookArray[0].totalPages) {
             markBookAsRead(id)
         }
@@ -215,8 +219,8 @@ function showLibraryStats(){
 
 
 
-addBooktoLibrary("Harry Potter", "JK Rowling", 300, 0, true)
-addBooktoLibrary("The Lightning", "Lorem Ipsum", 100,20,false)
+addBooktoLibrary("Magpie", "Elizabeth Day", 336, 0, "https://images-na.ssl-images-amazon.com/images/I/41WayqYI+pL._SX321_BO1,204,203,200_.jpg", true)
+addBooktoLibrary("The Murder of Mr. Wickham", "Claudia Grey", 400,20,"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639679719i/59089898.jpg",false)
 
 
 
