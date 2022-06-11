@@ -100,25 +100,34 @@ function markBookAsUnread(id){
 
 function markBookAsCurrenlyReading(id, currentPage){
     console.log(`${id},${currentPage}`)
-     //checks if book is previously read and removes the read icon
+    
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     const bookArray = myLibrary.filter(e => e.id === id)
     console.log(bookdiv.querySelector("object"))
-    if(bookArray[0].read == true || bookdiv.querySelector("object") != null){
-        bookdiv.querySelector("object").remove()}
-    const currentlyReadingIcon = document.createElement('object')
-    currentlyReadingIcon.setAttribute("data", "./Assets/CurrentlyReading.svg")
-    currentlyReadingIcon.setAttribute("class", "currentlyReadingIcon")
-    currentlyReadingIcon.setAttribute("style", "width: 25px")
-    currentlyReadingIcon.setAttribute("height", "height: 25px")
-    bookdiv.appendChild(currentlyReadingIcon)
-    //Also changes the array object's read properties to false
-    
-    bookArray[0].read = false
-    bookArray[0].currentPage = currentPage
-    closeBookDetail()
-    console.log(bookArray)
-    console.table(myLibrary)
+     //checks if book is read
+    if (currentPage != bookArray[0].totalPages && !(currentPage >= bookArray[0].totalPages)){
+         //removes previous icon if it exists
+        if(bookArray[0].read == true || bookdiv.querySelector("object") != null){
+            bookdiv.querySelector("object").remove()}
+        const currentlyReadingIcon = document.createElement('object')
+        currentlyReadingIcon.setAttribute("data", "./Assets/CurrentlyReading.svg")
+        currentlyReadingIcon.setAttribute("class", "currentlyReadingIcon")
+        currentlyReadingIcon.setAttribute("style", "width: 25px")
+        currentlyReadingIcon.setAttribute("height", "height: 25px")
+        bookdiv.appendChild(currentlyReadingIcon)
+        //Also changes the array object's read properties to false
+        
+        bookArray[0].read = false
+        bookArray[0].currentPage = currentPage
+        closeBookDetail()
+        console.log(bookArray)
+        console.table(myLibrary)
+    } else if(currentPage > bookArray[0].totalPages) {
+        alert("Kindly check page number values and try again")
+        } else if( currentPage == bookArray[0].totalPages) {
+            markBookAsRead(id)
+        }
+   
 
 }
 
