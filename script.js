@@ -79,7 +79,7 @@ function markBookAsRead(id){
     //checks if book is previously being read and removes the currently reading icon
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     const bookArray = myLibrary.filter(e => e.id === id)
-    if(bookArray[0].read == false && bookArray[0].currentPage != 0){
+    if(bookdiv.querySelector("object") != null){
         bookdiv.querySelector("object").remove()}
     //adds "book is read" icon
     const readIcon = document.createElement('object')
@@ -111,25 +111,24 @@ function markBookAsUnread(id){
     console.table(myLibrary)
 }
 
-function markBookAsCurrenlyReading(id, currentPage){
-    console.log(`${id},${currentPage}`)
-    
+function markBookAsCurrenlyReading(id, currentPage){  
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     const bookArray = myLibrary.filter(e => e.id === id)
-    console.log(bookdiv.querySelector("object"))
      //checks if book is read
     if (currentPage != bookArray[0].totalPages && !(currentPage >= bookArray[0].totalPages)){
          //removes previous icon if it exists
         if(bookArray[0].read == true || bookdiv.querySelector("object") != null){
-            bookdiv.querySelector("object").remove()}
+            console.log("attaempting to remove icon")
+            bookdiv.querySelector("object").remove()
+        }
+        console.log(bookArray[0].read)
         const currentlyReadingIcon = document.createElement('object')
         currentlyReadingIcon.setAttribute("data", "./Assets/CurrentlyReading.svg")
         currentlyReadingIcon.setAttribute("class", "currentlyReadingIcon")
         currentlyReadingIcon.setAttribute("style", "width: 25px")
         currentlyReadingIcon.setAttribute("height", "height: 25px")
         bookdiv.appendChild(currentlyReadingIcon)
-        //Also changes the array object's read properties to false
-        
+            //Also changes the array object's read properties to false
         bookArray[0].read = false
         bookArray[0].currentPage = currentPage
         closeBookDetail()
