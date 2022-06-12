@@ -217,6 +217,8 @@ label {
 }
 
 .bookDetail h1{
+    font-family: var(--main-font-family);
+    font-size: 4rem;
     grid-column: 1/-1;
     place-self: center;
     border-bottom: 1px solid black;
@@ -227,7 +229,9 @@ label {
 #bookCover{
     grid-row: 2 / 10;
     justify-self: right;
-    width: 15rem;
+    align-self: center;
+    width: 20rem;
+    aspect-ratio: 2/3;
     height: auto;  
 }
 

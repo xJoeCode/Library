@@ -27,9 +27,7 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
 
     closeForm()
     const book = new Book(title, author, totalPages, currentPage, url, read)
-    myLibrary.push(book)
     book.id = myLibrary.length
-    
     const library = document.querySelector(".library")
     //creates main book element
     const bookdiv = document.createElement("div")
@@ -43,6 +41,7 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
         backgroundImage.setAttribute("src","./Assets/bg1.jpg")
         backgroundImage.setAttribute("class","placeholderImage")
         bookdiv.appendChild(backgroundImage)
+        book.url = "./Assets/bg1.jpg"
     } else {
         const backgroundImage = document.createElement("img")
         backgroundImage.setAttribute("src",`${url}`)
@@ -52,6 +51,7 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
     bookdiv.appendChild(titlediv)
+    myLibrary.push(book)
     // creates a read icon on book element if the book is marked as read
     if (book.read == true){
         markBookAsRead(book.id)
