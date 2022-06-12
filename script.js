@@ -146,21 +146,27 @@ function markBookAsCurrenlyReading(id, currentPage){
 
 function showBookDetail(id){
     const bookDetailContainer = document.querySelector(".bookDetail")
-    bookDetailContainer.setAttribute("style","display:flex")
+    bookDetailContainer.setAttribute("style","display:grid")
     const bookArray = myLibrary.filter(e => e.id === id)
     console.log(bookArray)
     // references the id values in a hidden part of the popup which is used later for the "mark book as reading" function argument
     const booknumber = document.querySelector("#bookDetailID")
     booknumber.textContent = id
-    
+    //add book cover
+    const bookCover = document.querySelector("#bookCover")
+    bookCover.setAttribute("src",`${bookArray[0].url}`)
     //add title
     const title = document.querySelector("#bookDetailTitle")
     title.textContent = bookArray[0].title
     //add author
     const author = document.querySelector("#bookDetailAuthor")
     author.textContent = `Author: ${bookArray[0].author}`
+    //add total pages
+    const totalPages = document.querySelector("#bookDetailPages")
+    totalPages.textContent = `Total Pages: ${bookArray[0].totalPages}`
     //add current page number
     const currentPage = document.querySelector("#bookDetailCurrentPage")
+    currentPage.style.fontSize = "2rem"
     if (bookArray[0].currentPage == bookArray[0].totalPages){
         currentPage.textContent = "COMPLETED"
     } else if (bookArray[0].currentPage > 0){
@@ -168,9 +174,6 @@ function showBookDetail(id){
     } else {
         currentPage.textContent = "Currently Not Reading"
     }
-    //add total pages
-    const totalPages = document.querySelector("#bookDetailPages")
-    totalPages.textContent = `Total Pages: ${bookArray[0].totalPages}`
     //add "Remove Book" Button
     const removeBookButton = document.querySelector("#removeBookButton")
     removeBookButton.setAttribute("onClick",`removeBook(${id})`)
