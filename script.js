@@ -1,4 +1,4 @@
-function Book (title, author, totalPages, currentPage, read){
+function Book (title, author, totalPages, currentPage, url, read){
     this.title = title
     this.author = author
     this.totalPages = parseInt(totalPages)
@@ -8,6 +8,7 @@ function Book (title, author, totalPages, currentPage, read){
         } else {
             this.currentPage = parseInt(currentPage)
         }
+    this.url = url
     this.read = read 
     this.id = 1
     this.info = function(){
@@ -25,10 +26,10 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
     } else {
 
     closeForm()
-    const book = new Book(title, author, totalPages, currentPage, read)
+    const book = new Book(title, author, totalPages, currentPage, url, read)
     myLibrary.push(book)
     book.id = myLibrary.length
-    console.log(book)
+    
     const library = document.querySelector(".library")
     //creates main book element
     const bookdiv = document.createElement("div")
@@ -37,9 +38,16 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
     bookdiv.setAttribute("onClick",`showBookDetail(${book.id})`)
     library.appendChild(bookdiv)
     // adds background image
-    const backgroundImage = document.createElement("img")
-    backgroundImage.setAttribute("src",`${url}`)
-    bookdiv.appendChild(backgroundImage)
+    if (url === ""){
+        const backgroundImage = document.createElement("img")
+        backgroundImage.setAttribute("src","./Assets/bg1.jpg")
+        backgroundImage.setAttribute("class","placeholderImage")
+        bookdiv.appendChild(backgroundImage)
+    } else {
+        const backgroundImage = document.createElement("img")
+        backgroundImage.setAttribute("src",`${url}`)
+        bookdiv.appendChild(backgroundImage)
+    }
     //creates title 
     const titlediv = document.createElement("p")
     titlediv.innerHTML = book.title
@@ -47,6 +55,7 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
     // creates a read icon on book element if the book is marked as read
     if (book.read == true){
         markBookAsRead(book.id)
+        // creates a currently reading icon on book element if the book is marked as currently reading
         } else if (book.currentPage > 0){
             markBookAsCurrenlyReading(book.id, book.currentPage)
         }
@@ -143,6 +152,7 @@ function showBookDetail(id){
     // references the id values in a hidden part of the popup which is used later for the "mark book as reading" function argument
     const booknumber = document.querySelector("#bookDetailID")
     booknumber.textContent = id
+    
     //add title
     const title = document.querySelector("#bookDetailTitle")
     title.textContent = bookArray[0].title
@@ -172,8 +182,7 @@ function showBookDetail(id){
     markAsUnreadButton.setAttribute("onClick",`markBookAsUnread(${id})`)  
     // add  "Mark Page as read" Button
     document.querySelector("#markPageAsReadButton").setAttribute("onClick", `markBookAsCurrenlyReading(${id}, ${(bookArray[0].currentPage + 1)})`)
-
-    
+  
 }
 
 function closeBookDetail(){
@@ -202,6 +211,7 @@ function showLibraryStats(){
         list.style.display = "flex"
         libraryStats.style.width = "600px"
         libraryStats.style.height = "200px"
+
         const totalbooks = document.querySelector("#totalNumberOfBooks")
         totalbooks.textContent = `Total number of books owned: ${myLibrary.length}`
         const totalbooksread = document.querySelector("#totalNumberOfBooksRead")

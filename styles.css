@@ -52,8 +52,8 @@ body{
     height: 15rem;
     box-shadow: 3px 3px 5px rgb(66, 66, 66);
     
-    
 }
+
 
 .bookElement p{
     display: block;
@@ -84,6 +84,7 @@ body{
 
 #addbook svg{
     size: 50%;
+    
 }
 
 
@@ -163,7 +164,7 @@ input[type="checkbox"]{
     
 }
 input[type="checkbox"]:checked{
-    background: aquamarine;
+    background: rgb(64, 206, 159);
 }
 
 
@@ -173,13 +174,13 @@ button{
     border: none;
     font-family: var(--main-font-family);
     font-size: 1rem;
-    background-color: #bebebe;
+    background-color: rgb(127, 168, 255);
     width: 200px;
     height: 50px;
     margin: 5px;
     cursor: pointer;
     justify-self: center;
-    transition: 0.5s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
 
 button:hover{
