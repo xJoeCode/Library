@@ -112,10 +112,11 @@ function markBookAsUnread(id){
 }
 
 function markBookAsCurrenlyReading(id, currentPage){  
+    document.getElementById("CurrentPageNumber").value = ""
     const bookdiv = document.querySelector(`[data-id="${id}"]`)
     const bookArray = myLibrary.filter(e => e.id === id)
      //checks if book is read
-    if (currentPage != bookArray[0].totalPages && !(currentPage >= bookArray[0].totalPages)){
+    if ( !(currentPage >= bookArray[0].totalPages) && !(currentPage < 1)){
          //removes previous icon if it exists
         if(bookArray[0].read == true || bookdiv.querySelector("object") != null){
             console.log("attaempting to remove icon")
@@ -134,10 +135,10 @@ function markBookAsCurrenlyReading(id, currentPage){
         closeBookDetail()
         console.log(bookArray)
         console.table(myLibrary)
-    } else if(currentPage > bookArray[0].totalPages) {
+    } else if (currentPage > bookArray[0].totalPages || currentPage == bookArray[0].totalPages ) {
         markBookAsRead(id)
-        } else if( currentPage == bookArray[0].totalPages) {
-            markBookAsRead(id)
+        } else if (currentPage < 1){
+            markBookAsUnread(id)
         }
    
 

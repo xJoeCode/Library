@@ -101,8 +101,8 @@ body{
     align-items: center;
     display: hidden;
     background-color: rgb(255, 255, 255);
-    width: 30%;
-    height: 800px;
+    width: 80%;
+    height: 60%;
     position: fixed;
     border: 5px solid #242424;
     overflow:hidden;
@@ -121,15 +121,25 @@ body{
     width: 80%;
     flex-direction: column;
     align-content: center;
+    
 }
 
 .form li{
     list-style: none;
     margin: 10px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+ 
+    align-content: center;
 
+}
+
+.form label{
+    justify-self: end;
+    margin-right: 10%;
+    width: 30%;
+
+    
 }
 
  #closeButton{
@@ -149,7 +159,7 @@ input[type="text"], input[type="number"], input[type="url"] {
     border: 1px solid black;
     height: 30px;
     width: 200px;
-    justify-self: end;
+    justify-self: start;
 }
 
 
@@ -160,7 +170,7 @@ input[type="checkbox"]{
     width: 20px;
     height: 20px;
     border: 1px solid black;
-    justify-self: end;
+    justify-self: start;
     
 }
 input[type="checkbox"]:checked{
@@ -171,6 +181,7 @@ input[type="checkbox"]:checked{
 button{
     appearance: none;
     -webkit-appearance: none; 
+    border-radius: 3px;
     border: none;
     font-family: var(--main-font-family);
     font-size: 1rem;
