@@ -228,6 +228,47 @@ function showLibraryStats(){
         
         console.table(myLibrary)
     }
+function sortBooks(value){
+    const sortBooks = document.querySelector("#sortbooktext")
+    if (value == 'read'){
+        const booksread = myLibrary.filter(book => book.read == true)
+        booksread.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: -1")});
+
+    } else if (value == 'currentlyReading'){
+        const booksread = myLibrary.filter(book => (book.currentPage != 0 && book.currentPage != book.totalPages))
+        booksread.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: -1")});
+
+        } else if (value == "totalPages"){
+            const totalpages = myLibrary.sort(function(bookA, bookB){ if(bookA.totalPages > bookB.totalPages){
+                return 1 } else {
+                    return -1
+                }
+             })
+
+
+
+             
+ //            totalpages.forEach(book => {
+ //                document.querySelector(`[data-id="${totalpages.indexOf(book)}"]`).setAttribute("data-id", `${(book.id)}`)
+  //              })
+
+             console.table(totalpages)
+
+             totalpages.forEach(book => {
+                book.id = totalpages.indexOf(book)
+            })
+            
+            console.table(totalpages)
+
+              for (let i = 0; i < totalpages.length; ++i){
+                document.querySelector(`[data-id="${i}"]`).setAttribute("style", `order:${(i - totalpages.length)}`) 
+                }
+
+        }
+}
+
+        
+    
 
 
 

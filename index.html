@@ -100,5 +100,13 @@
             <li id="totalNumberOfBooksCurrentlyReading"></li>
         </ul>
     </div>
+    <form >
+<select id="sort">
+    <option value="read"> Books Read</option>
+    <option value="currentlyReading">Books Currently Reading</option>
+    <option value="totalPages"> Total Number of Pages</option>
+</select>
+<button type="button" onclick="sortBooks(document.getElementById('sort').value)"> Sort</button>
+    </form>
 </body>
 </html>

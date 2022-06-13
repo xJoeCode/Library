@@ -105,7 +105,7 @@ body{
     height: 60%;
     position: fixed;
     border: 5px solid #242424;
-    overflow:hidden;
+    overflow:auto;
     font-family:var(--main-font-family) ;
     z-index: 9;
 }
@@ -117,6 +117,7 @@ body{
 
 .form ul{
     padding: 0;
+    margin-bottom: 0;
     display: flex;
     width: 80%;
     flex-direction: column;
@@ -185,6 +186,7 @@ button{
     border: none;
     font-family: var(--main-font-family);
     font-size: 1rem;
+    flex-shrink: 0;
     background-color: rgb(127, 168, 255);
     width: 200px;
     height: 50px;
@@ -311,4 +313,16 @@ label {
     list-style: none;
     font-family: var(--main-font-family);
     font-size: 1.5rem;
+}
+
+.sortBooks{
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    background-color: #242424;
+    font-family: var(--main-font-family);
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+
 }
