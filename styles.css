@@ -1,5 +1,6 @@
 :root{
     --main-font-family: font-family: 'Sen', sans-serif;
+    --main-background-color: #242424
 }
 
 h1{
@@ -188,7 +189,7 @@ button{
     font-size: 1rem;
     flex-shrink: 0;
     background-color: rgb(127, 168, 255);
-    width: 200px;
+    width: 230px;
     height: 50px;
     margin: 5px;
     cursor: pointer;
@@ -293,7 +294,7 @@ label {
     width: 200px;
     height: 50px;
     cursor: pointer;
-    background-color: #242424;
+    background-color: var(--main-background-color);
     font-family: var(--main-font-family);
     color: white;
     border-radius: 5px;
@@ -319,10 +320,41 @@ label {
     width: 200px;
     height: 50px;
     cursor: pointer;
-    background-color: #242424;
+    background-color: var(--main-background-color);
     font-family: var(--main-font-family);
     color: white;
     border-radius: 5px;
     margin: 5px;
 
+}
+
+#sortForm{
+
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+select {
+    -webkit-appearance: none;
+    appearance: none;
+    font-family: var(--main-font-family);
+    text-align: center;
+    background-color: white;
+    color: var(--main-background-color);
+    border-radius: 3px;
+    border: none;
+    font-size: 1rem;
+    flex-shrink: 0;
+    width: 300px;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+
+}
+
+#sortBookButton{
+    height: 30px;
 }

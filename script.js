@@ -20,10 +20,16 @@ let myLibrary = []
 
 
 function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
-    if (title == '' || author == '' || totalPages < 1 || currentPage > totalPages || (currentPage != 0 && read == true)){
-            console.log("false" + author + title + totalPages)
-            alert("Please check form inputs and try again")
-    } else {
+    if (title == '' || author == '' ){
+    alert("Missing Title or Author Values")
+    } else if (totalPages < 1) {
+        alert("Invalid Total Page Number")
+        } else if(currentPage > totalPages){
+            console.log(currentPage+totalPages)
+            alert("Current Page Number Should be Less than the total number of pages")
+            } else if (currentPage != 0 && read == true){
+                alert("Book cannot be marked as read as there is a page number")
+            } else {
 
     closeForm()
     const book = new Book(title, author, totalPages, currentPage, url, read)
@@ -36,7 +42,10 @@ function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
     bookdiv.setAttribute("onClick",`showBookDetail(${book.id})`)
     library.appendChild(bookdiv)
     // adds background image
-    if (url === ""){
+    function checkURL(url) {
+        return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
+    if (url === ""|| checkURL(url) == false){
         const backgroundImage = document.createElement("img")
         backgroundImage.setAttribute("src","./Assets/bg1.jpg")
         backgroundImage.setAttribute("class","placeholderImage")

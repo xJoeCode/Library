@@ -29,7 +29,7 @@
             </li>
             <li>
                 <label for="pages">Total Page no.</label>
-                <input type="number" id="totalPages" min="0" max="1000" required>
+                <input type="number" id="totalPages" required>
             </li>
             <li><label for="currentPage">Current Page no.</label>
                 <input type="number" id="currentPage" >
@@ -100,14 +100,14 @@
             <li id="totalNumberOfBooksCurrentlyReading"></li>
         </ul>
     </div>
-    <form >
+    <form id="sortForm">
 <select id="sort">
     <option value="read"> Books Read</option>
     <option value="currentlyReading">Books Currently Reading</option>
-    <option value="totalPages"> Total Number of Pages</option>
-    <option value="currentPages">Current Pages</option>
+    <option value="totalPages">Highest Total Number of Pages</option>
+    <option value="currentPages"> Highest Current Page Number</option>
 </select>
-<button type="button" onclick="sortBooks(document.getElementById('sort').value)"> Sort</button>
+<button type="button" id="sortBookButton" onclick="sortBooks(document.getElementById('sort').value)"> Sort</button>
     </form>
 </body>
 </html>
