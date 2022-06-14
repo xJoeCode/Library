@@ -232,39 +232,31 @@ function sortBooks(value){
     const sortBooks = document.querySelector("#sortbooktext")
     if (value == 'read'){
         const booksread = myLibrary.filter(book => book.read == true)
-        booksread.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: -1")});
+        booksread.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: -1")})
+        const myLibrarydiff = myLibrary.filter( value => !(booksread.includes(value)))
+        myLibrarydiff.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: 0")})
 
     } else if (value == 'currentlyReading'){
+        //filters the array to looks for book with current pages that are more than 0 and less than the total number of pages
         const booksread = myLibrary.filter(book => (book.currentPage != 0 && book.currentPage != book.totalPages))
-        booksread.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: -1")});
-
+        booksread.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: -1")})
+        //filters the array to look for the other books that are not previously filtered
+        const myLibrarydiff = myLibrary.filter( value => !(booksread.includes(value)))
+        myLibrarydiff.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: 0")})
+        //sorts the array from the largest to the smallest number of pages
         } else if (value == "totalPages"){
             const totalpages = myLibrary.sort(function(bookA, bookB){ if(bookA.totalPages > bookB.totalPages){
-                return 1 } else {
-                    return -1
+                return -1 } else {
+                    return 1
                 }
              })
+            for (let i = 0; i < totalpages.length; ++i){
+            // goes through each index of the array and queryselect each of the book elements and giving them a descending value flex order
+            book = document.querySelector(`[data-id="${totalpages[i].id}"]`)
+            book.setAttribute("style", `order:${(i - totalpages.length)}`)
+            }
 
-
-
-             
- //            totalpages.forEach(book => {
- //                document.querySelector(`[data-id="${totalpages.indexOf(book)}"]`).setAttribute("data-id", `${(book.id)}`)
-  //              })
-
-             console.table(totalpages)
-
-             totalpages.forEach(book => {
-                book.id = totalpages.indexOf(book)
-            })
-            
-            console.table(totalpages)
-
-              for (let i = 0; i < totalpages.length; ++i){
-                document.querySelector(`[data-id="${i}"]`).setAttribute("style", `order:${(i - totalpages.length)}`) 
-                }
-
-        }
+        } else if (value == "")
 }
 
         
