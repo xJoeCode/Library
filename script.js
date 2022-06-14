@@ -256,7 +256,18 @@ function sortBooks(value){
             book.setAttribute("style", `order:${(i - totalpages.length)}`)
             }
 
-        } else if (value == "")
+        } else if (value == "currentPages") {
+            const currentPages = myLibrary.sort(function(bookA, bookB){ if(bookA.currentPage > bookB.currentPage){
+                return -1 } else {
+                    return 1
+                }
+             })
+             for (let i = 0; i < currentPages.length; ++i){
+                // goes through each index of the array and queryselect each of the book elements and giving them a descending value flex order
+                book = document.querySelector(`[data-id="${currentPages[i].id}"]`)
+                book.setAttribute("style", `order:${(i - currentPages.length)}`)
+                }
+        }
 }
 
         
