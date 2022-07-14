@@ -94,20 +94,20 @@
     </div>
     <div class="libraryStat" onclick="showLibraryStats()"> 
         <p>My Book Stats</p>
-        <ul>
+        <ul id="bookStatList">
             <li id="totalNumberOfBooks"></li>
             <li id="totalNumberOfBooksRead"></li>
             <li id="totalNumberOfBooksCurrentlyReading"></li>
         </ul>
     </div>
     <form id="sortForm">
-<select id="sort">
-    <option value="read"> Books Read</option>
-    <option value="currentlyReading">Books Currently Reading</option>
-    <option value="totalPages">Highest Total Number of Pages</option>
-    <option value="currentPages"> Highest Current Page Number</option>
-</select>
-<button type="button" id="sortBookButton" onclick="sortBooks(document.getElementById('sort').value)"> Sort</button>
+        <select id="sort">
+            <option value="read"> Books Read</option>
+            <option value="currentlyReading">Books Currently Reading</option>
+            <option value="totalPages">Total Number of Pages</option>
+            <option value="currentPages"> Current Page Number</option>
+        </select>
+        <button type="button" id="sortBookButton" onclick="sortBooks(document.getElementById('sort').value)"> Sort</button>
     </form>
 </body>
 </html>

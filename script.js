@@ -244,15 +244,23 @@ function openForm(){
 function showLibraryStats(){
     console.table(myLibrary)
     const libraryStats = document.querySelector(".libraryStat")
-    const list = libraryStats.querySelector("ul")
+    const listContainer = libraryStats.querySelector("#bookStatList")
+    const list = listContainer.querySelectorAll("li")
     if (libraryStats.style.width == "600px"){
-        libraryStats.style.width = "200px"
-        libraryStats.style.height = "50px"
-        list.style.display = "none"
+        libraryStats.classList.toggle("expand")
+        //listContainer.classList.toggle("expand")
+        list.forEach(list => list.classList.toggle("expand") )
+        
+        //libraryStats.style.width = "200px"
+       // libraryStats.style.height = "50px"
+        //list.style.display = "none"
     } else {
-        list.style.display = "flex"
-        libraryStats.style.width = "600px"
-        libraryStats.style.height = "200px"
+        libraryStats.classList.toggle("expand")
+        //listContainer.classList.toggle("expand")
+        list.forEach(list => list.classList.toggle("expand") )
+        //list.style.display = "flex"
+        //libraryStats.style.width = "600px"
+        //libraryStats.style.height = "200px"
 
         const totalbooks = document.querySelector("#totalNumberOfBooks")
         totalbooks.textContent = `Total number of books owned: ${myLibrary.length}`
