@@ -20,59 +20,89 @@ let myLibrary = []
 
 
 function addBooktoLibrary(title, author, totalPages, currentPage, url, read){
-    if (title == '' || author == '' ){
-    alert("Missing Title or Author Values")
-    } else if (totalPages < 1) {
-        alert("Invalid Total Page Number")
-        } else if(currentPage > totalPages){
-            console.log(currentPage+totalPages)
-            alert("Current Page Number Should be Less than the total number of pages")
-            } else if (currentPage != 0 && read == true){
-                alert("Book cannot be marked as read as there is a page number")
-            } else {
+    const titleInput = document.getElementById("title")
+    const authorInput = document.getElementById("title")
+    const totalPageNumber = document.getElementById("totalPages")
+    const currentPageNUmber = document.getElementById("currentPage")
+    const markAsRead = document.getElementById("read")
 
-    closeForm()
-    const book = new Book(title, author, totalPages, currentPage, url, read)
-    book.id = myLibrary.length
-    const library = document.querySelector(".library")
-    //creates main book element
-    const bookdiv = document.createElement("div")
-    bookdiv.setAttribute("class", "bookElement")
-    bookdiv.setAttribute("data-id", `${book.id}`)
-    bookdiv.setAttribute("onClick",`showBookDetail(${book.id})`)
-    library.appendChild(bookdiv)
-    // adds background image
-    function checkURL(url) {
-        return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
-    }
-    if (url === ""|| checkURL(url) == false){
-        const backgroundImage = document.createElement("img")
-        backgroundImage.setAttribute("src","./Assets/bg1.jpg")
-        backgroundImage.setAttribute("class","placeholderImage")
-        bookdiv.appendChild(backgroundImage)
-        book.url = "./Assets/bg1.jpg"
+
+    if (!titleInput.validity.valid){
+        titleInput.reportValidity()
+    } else if(!authorInput.validity.valid) {
+        authorInput.reportValidity()
+    } else if (!totalPageNumber.validity.valid) {
+        totalPageNumber.reportValidity()
+    } else if(parseInt(currentPage) > parseInt(totalPages)){
+        currentPageNUmber.setCustomValidity("Total page values must be more than current page values.")
+        currentPageNUmber.reportValidity()
+    } else if (currentPage != 0 && read == true){
+        markAsRead.setCustomValidity("Book cannot be marked as read as there is a current page number value.")
+        markAsRead.reportValidity()
     } else {
-        const backgroundImage = document.createElement("img")
-        backgroundImage.setAttribute("src",`${url}`)
-        bookdiv.appendChild(backgroundImage)
-    }
-    //creates title 
-    const titlediv = document.createElement("p")
-    titlediv.innerHTML = book.title
-    bookdiv.appendChild(titlediv)
-    myLibrary.push(book)
-    // creates a read icon on book element if the book is marked as read
-    if (book.read == true){
-        markBookAsRead(book.id)
-        // creates a currently reading icon on book element if the book is marked as currently reading
-        } else if (book.currentPage > 0){
-            markBookAsCurrenlyReading(book.id, book.currentPage)
-        }
+
+    //    if (title == '' || author == '' ){
+    //    alert("Missing Title or Author Values")
+    //    } else if (totalPages < 1) {
+    //        alert("Invalid Total Page Number")
+    //        } else if(currentPage > totalPages){
+    //            console.log(currentPage+totalPages)
+    //            alert("Current Page Number Should be Less than the total number of pages")
+    //            } else if (currentPage != 0 && read == true){
+    //                alert("Book cannot be marked as read as there is a page number")
+    //            } else {
+
+        createBooks(title, author, totalPages, currentPage, url, read)
+        closeForm()
+
         
+            
+            console.table(myLibrary)
+        }
+
     }
-    
-    console.table(myLibrary)
-}
+
+    function createBooks(title, author, totalPages, currentPage, url, read){
+
+        const book = new Book(title, author, totalPages, currentPage, url, read)
+        book.id = myLibrary.length
+        const library = document.querySelector(".library")
+        //creates main book element
+        const bookdiv = document.createElement("div")
+        bookdiv.setAttribute("class", "bookElement")
+        bookdiv.setAttribute("data-id", `${book.id}`)
+        bookdiv.setAttribute("onClick",`showBookDetail(${book.id})`)
+        library.appendChild(bookdiv)
+        // adds background image
+        function checkURL(url) {
+            return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+        }
+        if (url === ""|| checkURL(url) == false){
+            const backgroundImage = document.createElement("img")
+            backgroundImage.setAttribute("src","./Assets/bg1.jpg")
+            backgroundImage.setAttribute("class","placeholderImage")
+            bookdiv.appendChild(backgroundImage)
+            book.url = "./Assets/bg1.jpg"
+        } else {
+            const backgroundImage = document.createElement("img")
+            backgroundImage.setAttribute("src",`${url}`)
+            bookdiv.appendChild(backgroundImage)
+        }
+        //creates title 
+        const titlediv = document.createElement("p")
+        titlediv.innerHTML = book.title
+        bookdiv.appendChild(titlediv)
+        myLibrary.push(book)
+        // creates a read icon on book element if the book is marked as read
+        if (book.read == true){
+            markBookAsRead(book.id)
+            // creates a currently reading icon on book element if the book is marked as currently reading
+            } else if (book.currentPage > 0){
+                markBookAsCurrenlyReading(book.id, book.currentPage)
+            }
+            
+        }
+
 
 function removeBook(id){
     //removes book element from html
@@ -254,7 +284,9 @@ function sortBooks(value){
         myLibrarydiff.forEach(book => {document.querySelector(`[data-id="${book.id}"]`).setAttribute("style", "order: 0")})
         //sorts the array from the largest to the smallest number of pages
         } else if (value == "totalPages"){
+            console.log(myLibrary)
             const totalpages = myLibrary.sort(function(bookA, bookB){ if(bookA.totalPages > bookB.totalPages){
+                console.log(myLibrary)
                 return -1 } else {
                     return 1
                 }
@@ -285,8 +317,8 @@ function sortBooks(value){
 
 
 
-addBooktoLibrary("Magpie", "Elizabeth Day", 336, 0, "https://images-na.ssl-images-amazon.com/images/I/41WayqYI+pL._SX321_BO1,204,203,200_.jpg", true)
-addBooktoLibrary("The Murder of Mr. Wickham", "Claudia Grey", 400,20,"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639679719i/59089898.jpg",false)
+createBooks("Magpie", "Elizabeth Day", 336, 0, "https://images-na.ssl-images-amazon.com/images/I/41WayqYI+pL._SX321_BO1,204,203,200_.jpg", true)
+createBooks("The Murder of Mr. Wickham", "Claudia Grey", 400,20,"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1639679719i/59089898.jpg",false)
 
 
 
